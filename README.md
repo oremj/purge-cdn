@@ -13,5 +13,13 @@ go get github.com/oremj/purge-cdn
 EDGECAST_TOKEN="your-token"
 EDGECAST_ACCOUNT_ID="account-id"
 
-purge-cdn --url https://url-to-purge
+purge-cdn edgecast --url https://url-to-purge
+```
+
+### Purging akamai
+```bash
+AKAMAI_USER="akamai@user"
+AKAMAI_PASSWORD="akamai-password"
+
+purge-cdn akamai --url https://url-to-purge
 ```
