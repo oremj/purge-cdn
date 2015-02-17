@@ -1,4 +1,4 @@
-# purge-cdn
+# purge-cdn [![Build Status](https://travis-ci.org/oremj/purge-cdn.svg?branch=master)](https://travis-ci.org/oremj/purge-cdn)
 A tool to purge cache objects from multiple CDNs
 
 ## Installing
