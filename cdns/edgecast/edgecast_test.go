@@ -13,12 +13,17 @@ func TestPurge(t *testing.T) {
 		if r.Header.Get("Authorization") != "TOK:"+token {
 			t.Error("Authorization header is incorrect.")
 		}
+
+		if r.URL.Path != "/v2/mcc/customers/0000/edge/purge" {
+			t.Errorf("URL was not properly constructed: %s", r.URL.Path)
+		}
+
 		fmt.Fprint(w, `{"Id": "success"}`)
 	}))
 	defer ts.Close()
 
 	api := NewAPI("0000", token)
-	api.BaseURL = ts.URL
+	api.BaseURL = ts.URL + "/v2"
 	id, err := api.Purge("https://testurl/testPurge")
 	if err != nil {
 		t.Fatal(err)
