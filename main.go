@@ -14,6 +14,7 @@ func main() {
 	app.Author = ""
 	app.Email = ""
 	app.Commands = []cli.Command{
+		purgeAkamaiCommand(),
 		purgeEdgecastCommand(),
 	}
 	app.Run(os.Args)
