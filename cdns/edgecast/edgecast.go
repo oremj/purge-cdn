@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-const APIEndpoint = "https://api.edgecast.com/v2/"
+const APIEndpoint = "https://api.edgecast.com/v2"
 
 const (
 	MediaTypeFlash = 2
@@ -51,7 +51,7 @@ func (a *API) Purge(url string) (string, error) {
 		return "", err
 	}
 
-	req, err := http.NewRequest("PUT", a.BaseURL+"mcc/customers/"+a.AccountId+"/edge/purge", bytes.NewBuffer(body))
+	req, err := http.NewRequest("PUT", a.BaseURL+"/mcc/customers/"+a.AccountId+"/edge/purge", bytes.NewBuffer(body))
 	if err != nil {
 		return "", err
 	}
