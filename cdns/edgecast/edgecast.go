@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-const APIEndpoint = "https://api.edgecast.com/v2/"
+var APIEndpoint = "https://api.edgecast.com/v2/"
 
 const (
 	MediaTypeFlash = 2
