@@ -1,46 +1,46 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
-	"github.com/oremj/go-purge-cdn/cdns/edgecast"
-	"github.com/spf13/cobra"
+	"github.com/codegangsta/cli"
 )
 
-func purgeEdgecastCmd() *cobra.Command {
-	edgecastAPI := new(edgecast.API)
-
-	purgeEdgecastCmd := &cobra.Command{
-		Use:   "edgecast [url]",
-		Short: "purges urls from edgecast",
-		Run: func(cmd *cobra.Command, args []string) {
-			if len(args) < 1 {
-				cmd.Usage()
-				fmt.Println("url must be provided")
-				os.Exit(1)
-			}
-
-			id, err := edgecastAPI.Purge(args[0])
-			if err != nil {
-				fmt.Print(err)
-				os.Exit(1)
-			}
-			fmt.Print(id)
+func purgeEdgecastCommand() cli.Command {
+	cmd := cli.Command{
+		Name:  "edgecast",
+		Usage: "purges url from edgecast",
+		Flags: []cli.Flag{
+			cli.StringFlag{
+				Name:   "token",
+				Usage:  "Access token.",
+				EnvVar: "EDGECAST_TOKEN",
+			},
+			cli.StringFlag{
+				Name:   "account-id",
+				Usage:  "Account id",
+				EnvVar: "EDGECAST_ACCOUNT_ID",
+			},
+			cli.StringFlag{
+				Name:  "url, u",
+				Usage: "URL to purge (required)",
+			},
 		},
+		Action: doPurgeEdgecast,
 	}
-	purgeEdgecastCmd.Flags().StringVarP(&edgecastAPI.Token, "token", "t", "", "Access token.")
-	purgeEdgecastCmd.Flags().StringVarP(&edgecastAPI.AccountId, "account-id", "", "", "Access token.")
 
-	return purgeEdgecastCmd
+	return cmd
 }
 
 func main() {
+	app := cli.NewApp()
 
-	mainCmd := &cobra.Command{
-		Use: "purge-cdn",
+	app.Name = "purge-cdn"
+	app.Version = "0.1"
+	app.Author = ""
+	app.Email = ""
+	app.Commands = []cli.Command{
+		purgeEdgecastCommand(),
 	}
-
-	mainCmd.AddCommand(purgeEdgecastCmd())
-	mainCmd.Execute()
+	app.Run(os.Args)
 }
