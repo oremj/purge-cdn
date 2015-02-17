@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/oremj/cdn-purge/cdns/edgecast"
+	"github.com/oremj/go-purge-cdn/cdns/edgecast"
 	"github.com/spf13/cobra"
 )
 
@@ -38,7 +38,7 @@ func purgeEdgecastCmd() *cobra.Command {
 func main() {
 
 	mainCmd := &cobra.Command{
-		Use: "cdn-purge",
+		Use: "purge-cdn",
 	}
 
 	mainCmd.AddCommand(purgeEdgecastCmd())

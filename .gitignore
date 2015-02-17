@@ -23,4 +23,4 @@ _testmain.go
 *.test
 *.prof
 
-/cdn-purge
+/purge-cdn/purge-cdn
