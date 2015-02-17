@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-var APIEndpoint = "https://api.edgecast.com/v2/"
+const APIEndpoint = "https://api.edgecast.com/v2/"
 
 const (
 	MediaTypeFlash = 2
@@ -24,6 +24,16 @@ type PurgeResponse struct {
 type API struct {
 	AccountId string
 	Token     string
+
+	BaseURL string
+}
+
+func NewAPI(accountId, token string) *API {
+	return &API{
+		AccountId: accountId,
+		Token:     token,
+		BaseURL:   APIEndpoint,
+	}
 }
 
 func (a *API) addHeaders(req *http.Request) {
@@ -41,7 +51,7 @@ func (a *API) Purge(url string) (string, error) {
 		return "", err
 	}
 
-	req, err := http.NewRequest("PUT", APIEndpoint+"mcc/customers/"+a.AccountId+"/edge/purge", bytes.NewBuffer(body))
+	req, err := http.NewRequest("PUT", a.BaseURL+"mcc/customers/"+a.AccountId+"/edge/purge", bytes.NewBuffer(body))
 	if err != nil {
 		return "", err
 	}

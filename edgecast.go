@@ -8,6 +8,32 @@ import (
 	"github.com/oremj/purge-cdn/cdns/edgecast"
 )
 
+func purgeEdgecastCommand() cli.Command {
+	cmd := cli.Command{
+		Name:  "edgecast",
+		Usage: "purges url from edgecast",
+		Flags: []cli.Flag{
+			cli.StringFlag{
+				Name:   "token",
+				Usage:  "Access token.",
+				EnvVar: "EDGECAST_TOKEN",
+			},
+			cli.StringFlag{
+				Name:   "account-id",
+				Usage:  "Account id",
+				EnvVar: "EDGECAST_ACCOUNT_ID",
+			},
+			cli.StringFlag{
+				Name:  "url, u",
+				Usage: "URL to purge (required)",
+			},
+		},
+		Action: doPurgeEdgecast,
+	}
+
+	return cmd
+}
+
 func doPurgeEdgecast(c *cli.Context) {
 	if c.String("url") == "" {
 		cli.ShowSubcommandHelp(c)
@@ -15,10 +41,7 @@ func doPurgeEdgecast(c *cli.Context) {
 		os.Exit(1)
 	}
 
-	edgecastAPI := &edgecast.API{
-		AccountId: c.String("account-id"),
-		Token:     c.String("token"),
-	}
+	edgecastAPI := edgecast.NewAPI(c.String("account-id"), c.String("token"))
 
 	id, err := edgecastAPI.Purge(c.String("url"))
 	if err != nil {
