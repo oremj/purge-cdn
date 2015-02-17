@@ -24,7 +24,7 @@ func purgeEdgecastCommand() cli.Command {
 				EnvVar: "EDGECAST_ACCOUNT_ID",
 			},
 			cli.StringFlag{
-				Name:  "url, u",
+				Name:  "url",
 				Usage: "URL to purge (required)",
 			},
 		},
