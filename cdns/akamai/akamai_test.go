@@ -26,6 +26,8 @@ func TestPurge(t *testing.T) {
 			t.Errorf("URL was not properly constructed: %s", r.URL.Path)
 		}
 
+		w.WriteHeader(201)
+
 		fmt.Fprint(w, `{
 			"httpStatus" : 201,
 			"detail" : "Request accepted.",

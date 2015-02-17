@@ -69,7 +69,7 @@ func (a *API) Purge(url string) (*APIPurgeResponse, error) {
 		return nil, err
 	}
 
-	if resp.StatusCode != 200 {
+	if resp.StatusCode != 201 {
 		return nil, fmt.Errorf("Status Code: %d, Body: %s", resp.StatusCode, respBody)
 	}
 
