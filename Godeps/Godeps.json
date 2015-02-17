@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/oremj/go-purge-cdn",
+	"ImportPath": "github.com/oremj/purge-cdn",
 	"GoVersion": "go1.4.1",
 	"Packages": [
 		"./..."

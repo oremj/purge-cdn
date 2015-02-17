@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/oremj/go-purge-cdn/Godeps/_workspace/src/github.com/codegangsta/cli"
-	"github.com/oremj/go-purge-cdn/cdns/edgecast"
+	"github.com/oremj/purge-cdn/Godeps/_workspace/src/github.com/codegangsta/cli"
+	"github.com/oremj/purge-cdn/cdns/edgecast"
 )
 
 func doPurgeEdgecast(c *cli.Context) {

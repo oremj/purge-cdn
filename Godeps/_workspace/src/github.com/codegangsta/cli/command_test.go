@@ -4,7 +4,7 @@ import (
 	"flag"
 	"testing"
 
-	"github.com/oremj/go-purge-cdn/Godeps/_workspace/src/github.com/codegangsta/cli"
+	"github.com/oremj/purge-cdn/Godeps/_workspace/src/github.com/codegangsta/cli"
 )
 
 func TestCommandDoNotIgnoreFlags(t *testing.T) {
