@@ -48,5 +48,5 @@ func doPurgeEdgecast(c *cli.Context) {
 		fmt.Print(err)
 		os.Exit(1)
 	}
-	fmt.Print(id)
+	fmt.Println(id)
 }
